@@ -1,2 +1,5 @@
 [core]
 	autocrlf = false
+[user]
+	name = Jasper Kunst
+	email = jasperkunst00@gmail.com
