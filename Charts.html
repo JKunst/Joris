@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>charts</title>
+</head>
+<body>
+
+
+<!--<script src="https://rawgit.com/nnnick/Chart.js/master/Chart.min.js "></script>-->
+<script src='Chart.min.js'></script>
+<div id="header">
+<h1> Interactive appendix</h1>
+</div>
+
+<canvas id="Chart1" width="600" height="400"></canvas>
+<canvas id="Chart2" width="400" height="400"></canvas>
+
+
+<!--
+<p id="map-canvas"></p>
+
+
+</div>
+<p class="pos_fixed">Interactive appendix accompanying thesis of J. P. Kunst.<br> June 12, 2015</p>
+-->
+<script>
+
+var data2 = [
+    {
+        value: 25,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 25,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 30,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    },
+    {
+        value: 20,
+        color: "#FDB49C",
+        highlight: "#FFC871",
+        label: "Four"
+    }
+]
+
+var chart1 = document.getElementById("Chart1").getContext("2d");
+
+var doughnut1 = new Chart(chart1).Doughnut(data2);
+
+var buyerData = {
+  labels : ["January","February","March","April","May","June"],
+  datasets : [
+    {
+      fillColor : "rgba(172,194,132,0.4)",
+      strokeColor : "#ACC26D",
+      pointColor : "#fff",
+      pointStrokeColor : "#9DB86D",
+      data : [203,156,99,251,305,247]
+    }
+  ]
+}
+
+
+var buyers = document.getElementById('buyers').getContext('2d');
+    new Chart(buyers).Line(buyerData);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>charts</title>
+</head>
+<body>
+
+
+<!--<script src="https://rawgit.com/nnnick/Chart.js/master/Chart.min.js "></script>-->
+<script src='Chart.min.js'></script>
+<div id="header">
+<h1> double doughnut</h1>
+</div>
+
+
+<button id="rotate">Rotate</button>
+<br>
+<canvas id="canvas" width=300 height=300></canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+ctx.lineWidth = 20;
+
+var PI = Math.PI;
+var rotation = 0;
+
+var arcs = [];
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 100,
+    startAngle: -45,
+    endAngle: 45,
+    color: "blue"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 100,
+    startAngle: 45,
+    endAngle: 135,
+    color: "red"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 100,
+    startAngle: 135,
+    endAngle: 225,
+    color: "gold"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 100,
+    startAngle: 225,
+    endAngle: 315,
+    color: "green"
+});
+
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: -43,
+    endAngle: -2,
+    color: "blue"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 0,
+    endAngle: 45,
+    color: "blue"
+});
+
+
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 47,
+    endAngle: 88,
+    color: "red"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 90,
+    endAngle: 135,
+    color: "red"
+});
+
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 137,
+    endAngle: 180,
+    color: "gold"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 182,
+    endAngle: 225,
+    color: "gold"
+});
+
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 227,
+    endAngle: 272,
+    color: "green"
+});
+arcs.push({
+    cx: 150,
+    cy: 150,
+    radius: 75,
+    startAngle: 275,
+    endAngle: 313,
+    color: "green"
+});
+
+drawAll();
+
+function drawAll() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for (var i = 0; i < arcs.length; i++) {
+        draw(arcs[i]);
+    }
+}
+function draw(a) {
+    ctx.save();
+    ctx.translate(a.cx, a.cy);
+    ctx.rotate(rotation * PI / 180);
+    ctx.beginPath();
+    ctx.arc(0, 0, a.radius, a.startAngle * PI / 180, a.endAngle * PI / 180);
+    ctx.strokeStyle = a.color;
+    ctx.stroke();
+    ctx.restore();
+}
+$("#rotate").click(function () {
+    rotation += 90;
+    drawAll();
+});
+
+</script>
+</body>
+</html>
