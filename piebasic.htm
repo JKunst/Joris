@@ -111,6 +111,7 @@ window.onload=  function(){
 
 };
 function update(){
+
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -120,7 +121,7 @@ $(function () {
             type: 'pie'
         },
         title: {
-            text: 'Doorsnedes van BV NL'
+            text: 'Doorsnedes van Nederland'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -130,8 +131,8 @@ $(function () {
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
-                    enabled: true,
-                    //format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    enabled: false,
+                    format: '<b>{point.name}</b>',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     },
@@ -148,7 +149,7 @@ $(function () {
             }
         },
         series: [{
-            name: 'Percentage',
+            name: 'Gekozen sector',
             colorByPoint: true,
             
             
@@ -174,9 +175,39 @@ $(function () {
                 y: get_value(5)
             }],
             size: '60%',
-            innerSize: '60%' 
-        }]
+            innerSize: '30%' 
+        },{
+            name: 'Nederland',
+            colorByPoint: true,
+            
+            
+            data: [{
+                name: get_label(0),
+                y: get_value(0, true),
+            }, {
+                name: get_label(1),
+                y: get_value(1, true),
+                sliced: true,
+                selected: true
+            }, {
+                name: get_label(2),
+                y: get_value(2)
+            }, {
+                name: get_label(3),
+                y: get_value(3, true)
+            }, {
+                name: get_label(4),
+                y: get_value(4, true)
+            }, {
+                name: get_label(5),
+                y: get_value(5, true) 
+
+        }],
+        size : '100%',
+        innerSize : '80%'
+    }]
     });
+
 });
 };
 var BVtabel = {"Geslacht":[["Man",265688.0652,8052.38304,391637.2087,15795.0241,15730.26784,22450.27097,37146.29554,17202.57859,63713.8758,339963.5686,97141.09902,992910.9036,43808.02665,21192.94352,16082.25129,45854.33852,428071.9451,105462.2362,379306.8431,168141.5237,7399.892078,21161.26773,1834.505301,16756.89051,56579.46809,35610.56762,94329.13046,46995.67364,46309.95633,8766.441883,10284.51962,367608.0392,468931.353,13152.5783,636466.0196,0,0,183536.5837,93802.29825,42017.07756,378820.2296,502262.693,109730.7889,767639.4432,547398.3881,29471.78173,14539.18524,55129.67301,156751.1159,119385.1008,129015.0152,700165.9987,65900.90796,75277.24214,84822.72116,52846.65878,13639.43683,10301.51429,4432.841748,802.1642886,535456.2408,344891.8462,172919.3877,356770.6068,41611.9714,223949.1106,145701.9442,20613.20815,80521.90557,11367663.03],
@@ -210,7 +241,7 @@ function get_label(categorie){
       //console.log("1");console.log(categorie);console.log(sector);
     }
     catch(err) {
-      console.log('leeg')
+      //console.log('leeg')
     waarde = 0;
   }
    finally{ 
@@ -220,9 +251,14 @@ function get_label(categorie){
 };
 get_label();
 //console.log(get_value(0));
-function get_value(categorie){
-  var sector_select = document.getElementById("sector_selectie");
+function get_value(categorie, totaal){
+  var totaal = totaal;
+    var sector_select = document.getElementById("sector_selectie");
   var sector = sector_select.options[sector_select.selectedIndex].value;
+  if (totaal == true){
+    //alert("true")
+    sector=70;
+    console.log(sector)};
   var waarde, keuze, selectie;
   keuze = document.querySelector('input[name="doorsnede"]:checked').value;
   //console.log(selectie)
@@ -241,8 +277,7 @@ function get_value(categorie){
   return waarde;
   }
 };
-console.log(get_value(0));
-    </script>
+</script>
 </head>
 <body>
 
