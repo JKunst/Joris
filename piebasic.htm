@@ -291,12 +291,19 @@
 	</script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script>
+  		sheet = function($scope, $parse) {
+    		$scope.cell = "";
+    		$scope.compute = function() {
+      	return $parse($scope.cell)($scope);
+    };
+  }
+	</script>
 
 
 
-
-	<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
+ <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<!--
 	<div>
 		<p>
 		De vervallen sectoren geven nog steeds data das wel raar
@@ -304,18 +311,19 @@
 		<p>
 		<a href="http://blog.thomasstreet.com/post/129096073308/building-a-spreadsheet-in-20-minutes-with-angular-js"> start om een spreadsheet te maken</a>
 		</p>
-		<!-- stap 1-->
+		 stap 1
 		<div>
   			<input></input>
  			 <input disabled=disabled></input>
-		</div>
+		</div> -->
 
 		<!-- stap 2-->
-		<div ng-app>
-		  <input ng-model="cell"></input>
+		<div ng-app ng-controller="sheet">
+  <input ng-model="cell"></input>
+  
+  <div ng-bind="compute()" class="output"></div>
+</div>
 
-		  <div ng-bind="cell" class="output"></div>
-		</div>
 
 		<style>
 		  .output {
